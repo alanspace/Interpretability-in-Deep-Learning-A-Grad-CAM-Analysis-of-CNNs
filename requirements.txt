@@ -1,20 +1,40 @@
-# --- Core ML/DL Framework ---
+# =================================================================
+# # Core Deep Learning Framework
+# =================================================================
+# The primary library for building and training neural networks.
 torch
 torchvision
 
-# --- Segmentation Model Library ---
-segmentation-models-pytorch
-timm # A dependency for smp when using timm encoders
-
-# --- Image Processing & Augmentation ---
+# =================================================================
+# # Image Processing & Data Augmentation
+# =================================================================
+# Essential for reading, resizing, and manipulating images.
 opencv-contrib-python
+# A powerful library for fast and effective image augmentation.
 albumentations
 
-# --- Data Handling & Utilities ---
-numpy
+# =================================================================
+# # Data Handling & Utilities
+# =================================================================
+# For handling dataframes and reading the initial CSV file.
 pandas
+# The fundamental package for scientific computing with Python.
+numpy
+# Used for splitting the dataset into training and validation sets.
 scikit-learn
+# A utility for creating smart, fast progress bars.
 tqdm
 
-# --- Visualization ---
+# =================================================================
+# # Visualization
+# =================================================================
+# The primary library for creating static, animated, and interactive visualizations.
 matplotlib
+# A high-level interface for drawing attractive and informative statistical graphics.
+seaborn
+
+# =================================================================
+# # Development Environment
+# =================================================================
+# The interactive environment used to develop and present this project.
+jupyter
