@@ -1,0 +1,20 @@
+# --- Core ML/DL Framework ---
+torch
+torchvision
+
+# --- Segmentation Model Library ---
+segmentation-models-pytorch
+timm # A dependency for smp when using timm encoders
+
+# --- Image Processing & Augmentation ---
+opencv-contrib-python
+albumentations
+
+# --- Data Handling & Utilities ---
+numpy
+pandas
+scikit-learn
+tqdm
+
+# --- Visualization ---
+matplotlib
