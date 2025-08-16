@@ -53,12 +53,16 @@ cd Interpretability-in-Deep-Learning-A-Grad-CAM-Analysis-of-CNNs
 
 ```
 .
-├── GradCAM-Dataset/
-│   ├── train.csv
-│   ├── train_images/
-│   └── ...
-├── Deep_Learning_with_PyTorch_GradCAM.ipynb
-└── README.md
+├── train_images/ # Directory containing all training images.
+├── Deep_Learning_with_PyTorch_GradCAM.ipynb # The main Jupyter Notebook with all code.
+├── utils.py # Utility script for the custom PyTorch Dataset class.
+├── README.md # You are here!
+├── requirements.txt # List of Python dependencies for reproducibility.
+├── train.csv # CSV file mapping image filenames to their labels.
+├── custom_cnn_best.pth # Saved model weights for the custom CNN.
+├── resnet18_best.pth # Saved model weights for the fine-tuned ResNet18.
+├── gradcam_comparison.png # The final output image comparing the two models.
+└── LICENSE # Project license file.
 ```
 ### 4. Install Dependencies
 Install the required libraries from requirements.txt.
