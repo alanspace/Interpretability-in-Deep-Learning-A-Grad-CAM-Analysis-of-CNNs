@@ -1,107 +1,78 @@
-# Road Segmentation with U-Net and PyTorch
+# Comparative Analysis of CNNs for Vegetable Classification using Grad-CAM
 
-This repository contains a PyTorch implementation of a U-Net based model for semantic segmentation of roads from high-resolution aerial imagery. The project leverages the `segmentation-models-pytorch` library for a robust implementation and `albumentations` for efficient data augmentation.
+This project implements and evaluates two distinct Convolutional Neural Network (CNN) architectures for classifying images of vegetables (cucumbers, eggplants, and mushrooms). The primary goal is to compare the performance and interpretability of a custom-built CNN against a state-of-the-art ResNet18 model using transfer learning.
 
-The model is trained on a subset of the Massachusetts Roads Dataset.
+The analysis culminates in using **Grad-CAM (Gradient-weighted Class Activation Mapping)** to visualize and understand the internal decision-making processes of each model, providing insight into *why* one model outperforms the other.
 
-## Demo
+![Comparative Grad-CAM Analysis](gradcam_comparison.png)
 
-Here is an example of the model's performance on an image from the validation set:
+## Key Features & Skills Demonstrated
 
-<img src="prediction_result.png" width="768">
-<!-- | Original Image | Ground Truth Mask | Model's Prediction |
-| :---: | :---: | :---: |
-| <img src="URL_TO_YOUR_AERIAL_IMAGE.jpg" width="256"> | <img src="URL_TO_YOUR_GROUND_TRUTH_MASK.jpg" width="256"> | <img src="URL_TO_YOUR_PREDICTION_IMAGE.jpg" width="256"> | -->
+- **Custom CNN from Scratch:** A sequential CNN was designed and implemented from the ground up to establish a performance baseline, demonstrating a strong understanding of foundational deep learning principles.
 
-## Features
+- **Transfer Learning:** A pre-trained ResNet18 model was skillfully fine-tuned on the dataset, showcasing the ability to leverage state-of-the-art architectures for high performance.
 
-- **Model**: U-Net architecture with a pre-trained `timm-efficientnet-b0` encoder.
-- **Framework**: PyTorch.
-- **Loss Function**: A combination of Dice Loss and Binary Cross-Entropy with Logits Loss, effective for segmentation tasks.
-- **Data Augmentation**: On-the-fly data augmentation using the `albumentations` library (Horizontal and Vertical Flips).
-- **Data Handling**: A custom PyTorch `Dataset` class for easy data loading and preprocessing.
-- **Training**: A complete training and validation pipeline with progress bars via `tqdm`.
-- **Inference**: A clear example of how to load the trained model and perform inference on a single image.
+- **Model Interpretability (XAI):** Grad-CAM was implemented to generate heatmaps, visualizing the regions of an image that are most important for a model's prediction.
 
-## Dataset
-This project uses a subset of the **Massachusetts Roads Dataset**. The original dataset was introduced by Volodymyr Mnih in his PhD thesis.
+- **Quantitative & Qualitative Analysis:** The models were rigorously compared not only on performance metrics (Accuracy, Loss) but also on the quality and precision of their feature localization via the generated heatmaps.
 
-- **Content**: The subset contains 200 aerial images (1500x1500 pixels) and their corresponding binary road masks.
-- **Source**: The data is cloned directly from this [GitHub repository](https://github.com/parth1620/Road_seg_dataset).
+- **End-to-End Workflow:** The project covers the complete machine learning pipeline: data loading and augmentation, model definition, training and validation loops, evaluation, and advanced analysis.
 
-If you use this dataset in your research, please cite the original work:
+## Conclusion and Key Findings
 
-```bibtex
-@phdthesis{MnihThesis,
-  author = {Volodymyr Mnih},
-  title = {Machine Learning for Aerial Image Labeling},
-  school = {University of Toronto},
-  year = {2013}
-}
-```
-## Setup and Installation
-Follow these steps to set up the project environment.
+> I began by constructing a **custom, sequential CNN from scratch** to establish a performance baseline. This model follows a classic architecture, which allowed me to demonstrate foundational principles. I then compared this baseline against a **pre-trained ResNet18**, leveraging transfer learning to show how modern architectures can achieve higher performance and more precise feature localization, as validated by my Grad-CAM analysis.
 
-1. Clone the repository:
+The results clearly demonstrate the power of transfer learning. While the custom CNN achieved a respectable accuracy, the fine-tuned ResNet18 model not only performed significantly better quantitatively but also produced far more precise and meaningful Grad-CAM heatmaps. The ResNet18 model focused on complex, high-level features (like texture and the junction of the stem), whereas the custom CNN focused on simpler, low-level features (like color and basic shape), proving the value of pre-trained weights for achieving robust and intelligent model behavior.
 
-```
-git clone https://github.com/alanspace/Road-Segmentation-with-U-Net-and-PyTorch.git
-cd Road-Segmentation-with-U-Net-and-PyTorch
-```
-2. Create a virtual environment (recommended):
+## Technologies Used
+
+- **Programming Language:** Python
+- **Deep Learning Framework:** PyTorch
+- **Libraries:**
+  - OpenCV: For image processing.
+  - Albumentations: For efficient and powerful data augmentation.
+  - Scikit-learn: For data splitting and evaluation metrics.
+  - Pandas: For data manipulation.
+  - Matplotlib & Seaborn: For data visualization.
+  - NumPy: For numerical operations.
+
+## How to Run This Project
+
+### 1. Prerequisites
+
+Make sure you have Python 3.8+ and `pip` installed.
+
+### 2. Clone the Repository
 
 ```
-python -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+git clone https://github.com/alanspace/Interpretability-in-Deep-Learning-A-Grad-CAM-Analysis-of-CNNs.git
+cd Interpretability-in-Deep-Learning-A-Grad-CAM-Analysis-of-CNNs
 ```
 
-3. Install the required dependencies:
-A requirements.txt file is provided for easy installation.
+## Set Up the Dataset
+
+```
+.
+├── GradCAM-Dataset/
+│   ├── train.csv
+│   ├── train_images/
+│   └── ...
+├── Deep_Learning_with_PyTorch_GradCAM.ipynb
+└── README.md
+```
+### 4. Install Dependencies
+Install the required libraries from requirements.txt.
 
 ```
 pip install -r requirements.txt
 ```
 
-4. Download the dataset:
-The Jupyter Notebook includes a cell to clone the dataset repository. Alternatively, you can run this command in your terminal:
+### 5. Run the Jupyter Notebook
+Launch Jupyter Notebook or JupyterLab and open the Deep_Learning_with_PyTorch_GradCAM.ipynb file.
 
-```
-git clone https://github.com/parth1620/Road_seg_dataset.git
-```
-
-## Usage
-The entire workflow is contained within the Aerial_Image_Segmentation_PyTorch.ipynb Jupyter Notebook.
-
-1. Launch Jupyter Notebook or Jupyter Lab:
 ```
 jupyter notebook
 ```
-or
-```
-jupyter lab
-```
 
-2. Open the Notebook:
-Navigate to and open the Aerial_Image_Segmentation_PyTorch.ipynb file.
+You can then run the cells sequentially to reproduce the training, evaluation, and analysis.
 
-3. Run the Cells:
-Execute the cells in order from top to bottom. The notebook is structured as follows:
-
-- Setup and Configuration: Imports libraries, sets up the device (GPU/CPU), and defines hyperparameters.
-- Data Loading and Exploration: Loads the dataset and visualizes a sample.
-- Augmentation and DataLoaders: Defines the augmentation pipeline and prepares data loaders for training.
-- Model Definition: Defines the U-Net model using segmentation-models-pytorch.
-- Training: Runs the training and validation loop, saving the best model weights to best_model.pth.
-- Inference: Loads the saved model and visualizes its prediction on a validation image.
-
-The best performing model will be saved as best_model.pth in the root directory.
-
-### Model Architecture
-The model is a U-Net, a convolutional neural network architecture designed for fast and precise image segmentation.
-
-- Encoder: We use timm-efficientnet-b0 as the encoder backbone, pre-trained on the ImageNet dataset. This allows the model to leverage powerful, pre-learned features, leading to faster convergence and better performance.
-- Decoder: The decoder part of the U-Net upsamples the feature maps and uses skip connections from the encoder to recover spatial information, which is crucial for precise segmentation.
-- Output: The model outputs a single-channel image (logit map), to which a sigmoid function is applied to get a probability map for the road class.
-
-### License
-This project is licensed under the MIT License. See the LICENSE file for details.
